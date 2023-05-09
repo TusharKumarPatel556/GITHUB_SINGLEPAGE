@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            position: relative;
+            background: linear-gradient(150deg, rgb(17, 0, 94), rgb(0, 0, 0));
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ANIMATION */
+        .star-rain {
+
+
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-127deg) scale(0.7);
+            /* border: 2px solid white; */
+
+        }
+
+        .main {
+            position: absolute;
+            width: 100%;
+            height: 40%;
+            z-index: 50;
+
+        }
+
+        i {
+            position: absolute;
+            height: 200px;
+            background: linear-gradient(transparent, white);
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            animation: animate 3s linear infinite;
+        }
+
+        /* i::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    width: 22px;
+    height: 22px;
+    background-color: red;
+    border-radius: 50%;
+} */
+
+        i:nth-child(3n+5) {
+            background: linear-gradient(transparent, rgb(0, 136, 255), rgb(255, 255, 255));
+
+        }
+
+        i:nth-child(3n) {
+            background: linear-gradient(transparent, rgb(255, 62, 226), rgb(166, 0, 255));
+            z-index: 70;
+        }
+
+        /* 
+i:nth-child(3n+1) {
+    background: linear-gradient(transparent, aqua);
+
+}
+
+i:nth-child(3n+5) {
+    background: linear-gradient(transparent, yellow, rgb(0, 255, 4));
+
+}
+
+i:nth-child(3n+2) {
+    background: linear-gradient(transparent, rgb(213, 230, 23));
+}
+
+i:nth-child(13n) {
+    background: linear-gradient(transparent, rgb(255, 62, 226), rgb(166, 0, 255));
+    z-index: 70;
+}
+
+i:nth-child(3n+12) {
+    background: linear-gradient(transparent, yellow, rgb(201, 66, 13));
+
+} */
+
+
+        @keyframes animate {
+
+            0% {
+                transform: translateY(-1000px);
+            }
+
+            100% {
+                transform: translateY(1600px);
+                height: 120px;
+            }
+        }
+
+        /* SEARCH BOX */
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+
+            /* box-shadow: 2px 2px 20px black; */
+        }
+
+        .search-box>div {
+            box-shadow: 0px 0px 30px rgb(164, 164, 239);
+
+        }
+
+        #search-area>div {
+            border-radius: 12px;
+        }
+
+        .input-area {
+            box-shadow: 2px 2px 6px black;
+        }
+
+
+        /* data section */
+        .items {
+            margin-top: 200px;
+            border: 5px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            width: 80%;
+            margin-left: 10%;
+            box-shadow: 0.1px 1px 50px rgba(0, 0, 0, 0.895);
+        }
+
+        .items>div {
+
+            margin-left: 50px;
+            /* margin-right: 200px; */
+        }
+
+
+        /* profile card */
+        .profile {
+            display: flex;
+            align-items: center;
+
+        }
+
+        .card {
+            position: relative;
+            opacity: 0.8;
+            box-shadow: 10px 10px 20px 5px rgb(1, 11, 83);
+        }
+
+
+
+        .card-title {
+            text-align: center;
+        }
+
+        .followings {
+            display: flex;
+        }
+
+        .followings>div {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            color: rgb(56, 114, 251);
+        }
+
+        .followings>div>h6 {
+            color: rgb(19, 6, 73);
+            font-weight: bolder;
+        }
+
+        /* Repositories */
+        .repositories {
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+            width: 500px;
+            flex: 1 1 auto;
+            overflow: auto;
+        }
+
+        .repo-box {
+            color: white;
+            border: 2px solid white;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+        }
+
+
+
+        .repo-box>h3 {
+            color: antiquewhite;
+
+        }
+
+        /* FRIEND LIST */
+
+
+        .followers {
+            overflow: auto;
+            height: 500px;
+            width: 500px;
+        }
+
+        .friend-list {
+            display: grid;
+            grid-template-columns: 4fr 8fr;
+        }
+
+        #friend-name {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="star-rain">
+
+    </div>
+    <main class="main">
+        <div class="search-box  mt-5" id="search-area  ">
+            <div class="col-md-7 ">
+                <form action="" target="_blank" class="form-control d-flex" method="POST">
+                    <input type="text" placeholder="User Name" class="form-control input-area" id="login">
+                    <button type="submit" class="btn btn-lg btn-success ms-2" id="submit-btn">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="container-fluid d-flex mt-5 items">
+            <div class="profile">
+            </div>
+            <div class="repositories ms-5">
+
+            </div>
+            <div class="followers">
+
+            </div>
+
+        </div>
+    </main>
+
+
+
+
+
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script>
+        const submit_btn = document.getElementById('submit-btn')
+        document.addEventListener("DOMContentLoaded", () => {
+
+            function rain() {
+                let amount = 120;
+                let rain = document.querySelector('.star-rain');
+                // let cosmic = document.getElementById('cosmic')
+                // cosmic.play()
+                let i = 0;
+                while (i < amount) {
+                    let drop = document.createElement('i');
+                    let size = Math.random() * 5;
+                    let posX = Math.floor(Math.random() * window.innerWidth);
+                    let delay = Math.random() * -20;
+                    let duration = Math.random() * 5;
+                    drop.style.width = 0.2 + size + 'px';
+                    drop.style.left = posX + 'px';
+                    drop.style.animationDelay = delay + 's';
+                    drop.style.animationDuration = 7 + duration + 's';
+                    rain.appendChild(drop);
+                    i++
+                }
+            }
+            rain()
+            submit_btn.addEventListener("click", (e) => {
+                e.preventDefault()
+                const login = document.getElementById("login")
+                const userName = login.value.trim()
+                fetchData(userName)
+            })
+        })
+
+        function fetchData(login) {
+            console.log('hello1')
+            const url = `https://api.github.com/users/${login}`
+            console.log(url)
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('data=', data)
+                    const repos_url = data.repos_url
+                    fetch(repos_url)
+                        .then(response => response.json())
+                        .then(repo => {
+                            console.log('repo=', repo)
+                            fetch(`${data.followers_url}`)
+                                .then(response => response.json())
+                                .then(followers => {
+                                    console.log('followers=', followers)
+                                    displayContent(data, repo, followers);
+
+                                })
+
+                        })
+
+                })
+        }
+
+        function displayContent(data, repos, followers) {
+            const profile_card = document.querySelector(".profile")
+            const repository = document.querySelector(".repositories")
+            const fans = document.querySelector(".followers")
+            profile_card.innerHTML = `
+    <div class="card" style="width: 15rem;">
+  <img class="card-img-top" src=${data.avatar_url}  alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">${data.name}</h5>
+  </div>
+  <div class="followings">
+  <div class="follow">
+  <h6>Followers</h6>
+  <h4> ${data.followers}</h4>
+  </div>
+  <div class="follow">
+  <h6>Following</h6>
+  <h4>${data.following}</h4>
+  </div>
+  </div>
+</div>
+    `;
+            repository.innerHTML = ``;
+            for (repo of repos) {
+                repository.innerHTML += `
+<div class="repo-box m-2  col-8">
+<h3> ${repo.name}</h3>
+<p>${repo.description}</p>
+</div>
+           `
+            }
+
+            fans.innerHTML = ``;
+            for (follower of followers) {
+
+                fans.innerHTML += `
+        <div class="friend-list m-2 col-5">
+        <div>
+        <img class="card-img-top" src=${follower.avatar_url}  alt="Card image cap">
+        </div>
+        <div>
+        <div>
+        <h5 class="card-title" id='friend-name'>${follower.login}</h5>
+        </div>
+        <div class="followings">
+          <div class="follow">
+          <h6>Followers</h6>
+          <h4> none</h4>
+          </div>
+          <div class="follow">
+          <h6>Following</h6>
+          <h4>none</h4>
+          </div>
+          </div>
+        </div>
+        </div>
+                   `
+
+
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
